@@ -9,15 +9,17 @@ import java.util.ArrayList;
 public class Lista {
 
     Nodo cajero, ultimo;
+    Nodo aux;
 
     public Lista() {
         cajero = new Nodo(0, "Cajero");
         ultimo = new Nodo();
         cajero.setSiguiente(cajero);
+        aux = cajero.getSiguiente();
     }
 
     public void añadir(Nodo n) {
-        if (n != null) {
+//        if (n != null) {
             if (cajero.getSiguiente() == cajero) {
                 cajero.setSiguiente(n);
                 cajero.setAnterior(n);
@@ -33,12 +35,10 @@ public class Lista {
                 n.setSiguiente(cajero);
                 ultimo = n;
             }
-        }
+//        }
     }
 
     public void atender() {
-        Nodo aux = new Nodo();
-        aux = cajero.getSiguiente();
 
         do {
             if (aux.getProcesos() > 3) {
@@ -58,9 +58,12 @@ public class Lista {
                     ultimo.setSiguiente(aux);
                     cajero.setAnterior(aux);
                     ultimo = aux;
-                    atender();
                 }
+                if (aux.getProcesos() <= 3) {
+                        aux.setProcesos(0);
+                    }
             }
+
             aux = aux.getSiguiente();
         } while (aux != cajero);
     }
@@ -74,7 +77,7 @@ public class Lista {
             arr.add(aux);
             aux = aux.getSiguiente();
         } while (aux != cajero);
-        
+
         return arr;
     }
 }

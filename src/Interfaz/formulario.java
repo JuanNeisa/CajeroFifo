@@ -29,6 +29,7 @@ public class formulario extends javax.swing.JFrame{
     public formulario() {
         
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         jLabel1 = new javax.swing.JLabel();
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
@@ -66,13 +67,14 @@ public class formulario extends javax.swing.JFrame{
         organizarJframe();
     }
     
-    private void accionAtender(java.awt.event.ActionEvent evt) {                                           
+    private void accionAtender(java.awt.event.ActionEvent evt) {        
+//        cont = 0;
         l.atender();
         llenarTabla();
     }  
     
     private void accionAgregar(java.awt.event.ActionEvent evt) {                                           
-            Nodo nodo = new Nodo((int) (Math.random()*10+1), "Proceso " +(cont+1));
+            Nodo nodo = new Nodo((int) (Math.random()*(8-4+1)+4), "Proceso " +(cont));
             l.añadir(nodo);
             cont++;
             llenarTabla();
